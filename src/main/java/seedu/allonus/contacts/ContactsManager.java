@@ -71,7 +71,21 @@ public class ContactsManager {
         return Integer.parseInt(stringOfNum) - 1;
     }
 
-    private static void listContacts() {
+    private static void listContactsName() {
+        if (contactsList.size() == 0) {
+            printFormat(CONTACTS_EMPTY_LIST_MESSAGE);
+            return;
+        }
+
+        String listAsString = "";
+        for (int i = 0; i < contactsList.size(); i++) {
+            Contact curr = contactsList.get(i);
+            listAsString = listAsString.concat(String.format(" %d. %s\n", i + 1, curr.getName()));
+        }
+        printFormat(CONTACTS_LIST_SUCCESS_MESSAGE + listAsString);
+    }
+
+    private static void listContactsFull() {
         if (contactsList.size() == 0) {
             printFormat(CONTACTS_EMPTY_LIST_MESSAGE);
             return;
@@ -178,7 +192,9 @@ public class ContactsManager {
                 logger.log(Level.FINER, "Exiting Contacts Manager");
                 return;
             } else if (userInput.equals("list")) {
-                listContacts();
+                listContactsName();
+            } else if (userInput.equals("list -full")) {
+                listContactsFull();
             } else if (userInput.startsWith("rm")) {
                 deleteContact(userInput);
             } else if (userInput.startsWith("add")) {
@@ -193,6 +209,5 @@ public class ContactsManager {
             }
         }
     }
-
 
 }

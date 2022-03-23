@@ -44,7 +44,7 @@ public class ContactsManager {
 
     private static Logger logger = Logger.getLogger("");
     private static final int CONTACTS_LIST_MAX_SIZE = 100;
-    private static final ArrayList<Contact> contactsList = new ArrayList<>(CONTACTS_LIST_MAX_SIZE);
+    static final ArrayList<Contact> contactsList = new ArrayList<>(CONTACTS_LIST_MAX_SIZE);
 
     /**
      * Prints a message following a defined format.
@@ -102,7 +102,7 @@ public class ContactsManager {
                 + String.format(CONTACTS_UPDATED_LIST_SIZE_MESSAGE, contactsList.size()));
     }
 
-    private static void addContact(String userInput) {
+    static void addContact(String userInput) {
         Contact contact;
         try {
             contact = parseContact(userInput);
@@ -193,6 +193,5 @@ public class ContactsManager {
             }
         }
     }
-
 
 }

@@ -19,8 +19,7 @@ public class ContactsManagerTest {
     private Contact bobChaplin;
     private Contact charlieDouglas;
     private Contact davidElliot;
-
-    private static final int CONTACTS_LIST_MAX_SIZE = 100;
+    
     private ArrayList<Contact> emptyContactsList;
     private ArrayList<Contact> defaultContactsList;
 
@@ -44,10 +43,12 @@ public class ContactsManagerTest {
                 new Email("e4@u.nus.edu"),
                 new Description("DE"));
 
-        emptyContactsList = new ArrayList<>(CONTACTS_LIST_MAX_SIZE);
-        defaultContactsList = new ArrayList<>(CONTACTS_LIST_MAX_SIZE);
-        defaultContactsList.add(aliceBetsy);
-        defaultContactsList.add(bobChaplin);
+        emptyContactsList = new ContactsManager().contactsList;
+
+        ContactsManager defaultContactsManager = new ContactsManager();
+        defaultContactsList = defaultContactsManager.contactsList;
+        defaultContactsManager.addContact("add n/Alice Betsy f/FOS e/e1@u.nus.edu d/AB");
+        defaultContactsManager.addContact("add n/Bob Chaplin f/FASS e/e2@u.nus.edu d/BC");
     }
 
     @Test
